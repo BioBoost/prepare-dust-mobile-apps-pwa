@@ -22,7 +22,7 @@ jobs:
           node-version: 18.x
 
       - name: Build dist
-        run: npm build
+        run: npm run build
 
         # https://github.com/nwtgck/actions-netlify
       - name: Deploy to Netlify
