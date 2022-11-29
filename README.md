@@ -427,3 +427,7 @@ docker run --rm -p 80:80 ghcr.io/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/mobile-ap
 ```
 
 You can find the exact package name on the page of your github repo.
+
+### Environment Variables
+
+Not working as I thought it would.
