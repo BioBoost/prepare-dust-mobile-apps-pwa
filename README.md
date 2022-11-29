@@ -84,6 +84,9 @@ const envVar = import.meta.env.VITE_MY_ENV_VAR
     <h1>This is an about page</h1>
     <div>Environment variable: {{ envVar }}</div>
 
+<!-- .... -->
+
+</template>
 ```
 
 Of course when we deploy on netlify we need to be able to set the ENV var there too.
@@ -91,3 +94,61 @@ Of course when we deploy on netlify we need to be able to set the ENV var there 
 Netlify allows you to do just that:
 
 ![Netlify ENV vars](./img/netlify_env_vars.png)
+
+Do note that this env var is used when the site is being build by netlify.
+
+### API End Point
+
+This allows us to configure the API end point for both development and production.
+
+In `.env.development`
+
+```
+VITE_MY_ENV_VAR="You are working in dev mode"
+VITE_API_ENDPOINT=https://dust.devbitapp.be/api
+```
+
+And on netlify:
+
+```
+VITE_API_ENDPOINT=/api
+```
+
+Now we just need to tweak our API calls:
+
+```vue
+<script setup lang="ts">
+// ...
+
+const baseURL = import.meta.env.VITE_API_ENDPOINT
+const api = axios.create({
+  baseURL: baseURL
+})
+
+onMounted(() => {
+  api.get('/trees')
+  .then((response) => {
+    // console.log(response)
+    trees.value = response.data.data;
+  })
+  .catch((err) => {
+    // console.log("failed to get response");
+    error.value = err.message;
+  })
+})
+
+const envVar = import.meta.env.VITE_MY_ENV_VAR
+</script>
+
+<template>
+  <div class="about">
+    <h1>This is an about page</h1>
+    <div>Environment variable: {{ envVar }}</div>
+    <div>API EndPoint: {{ baseURL }}</div>
+
+  <!-- ... -->
+</template>
+
+</style>
+
+```

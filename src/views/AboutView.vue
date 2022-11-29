@@ -5,8 +5,13 @@ import { onMounted, ref } from 'vue';
 const trees = ref([] as any);
 const error = ref("");
 
+const baseURL = import.meta.env.VITE_API_ENDPOINT
+const api = axios.create({
+  baseURL: baseURL
+})
+
 onMounted(() => {
-  axios.get('/api/trees')
+  api.get('/trees')
   .then((response) => {
     // console.log(response)
     trees.value = response.data.data;
@@ -24,6 +29,7 @@ const envVar = import.meta.env.VITE_MY_ENV_VAR
   <div class="about">
     <h1>This is an about page</h1>
     <div>Environment variable: {{ envVar }}</div>
+    <div>API EndPoint: {{ baseURL }}</div>
 
     <div>
       <h3>Trees</h3>
