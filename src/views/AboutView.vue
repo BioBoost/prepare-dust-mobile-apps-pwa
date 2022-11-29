@@ -27,7 +27,7 @@ const envVar = import.meta.env.VITE_MY_ENV_VAR
 
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1>This is build with github actions</h1>
     <div>Environment variable: {{ envVar }}</div>
     <div>API EndPoint: {{ baseURL }}</div>
 
