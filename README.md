@@ -418,3 +418,12 @@ jobs:
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
 ```
+
+You can test this locally by running an instance of the image:
+
+```bash
+docker pull ghcr.io/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/mobile-apps-dust-frontend:latest
+docker run --rm -p 80:80 ghcr.io/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/mobile-apps-dust-frontend:latest
+```
+
+You can find the exact package name on the page of your github repo.
