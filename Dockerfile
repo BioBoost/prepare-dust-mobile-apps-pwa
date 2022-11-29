@@ -7,6 +7,7 @@ COPY . .
 
 # Build Stage
 FROM develop-stage as build-stage
+ARG VITE_API_ENDPOINT
 RUN npm run build
 
 # Production Stage
