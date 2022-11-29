@@ -51,3 +51,5 @@ Anyways, if problems would arise here is a Netlify solution.
 **Make sure to place this before the `/*` redirect!**
 
 More info @ [https://docs.netlify.com/configure-builds/file-based-configuration/#redirects](https://docs.netlify.com/configure-builds/file-based-configuration/#redirects).
+
+Of course you will need to make your API calls to `/api` from now on and not the actual dust endpoint.
