@@ -56,8 +56,6 @@ More info @ [https://docs.netlify.com/configure-builds/file-based-configuration/
 
 Of course you will need to make your API calls to `/api` from now on and not the actual dust endpoint.
 
-TODO: Fix this for local development
-
 ## Environment Variables
 
 Vite: [https://vitejs.dev/guide/env-and-mode.html](https://vitejs.dev/guide/env-and-mode.html)
