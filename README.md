@@ -1,4 +1,4 @@
-# Prepara DUST Mobile Apps PWA and Deployment
+# Prepare Mobile Apps Netlify Deploy
 
 ## Deployment on Netlify
 
