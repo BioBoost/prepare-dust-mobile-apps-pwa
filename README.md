@@ -1,46 +1,28 @@
-# prepare-dust-mobile-apps-pwa
+# Prepara DUST Mobile Apps PWA and Deployment
 
-This template should help get you started developing with Vue 3 in Vite.
+## Deployment
 
-## Recommended IDE Setup
+1. Setup a netlify.toml file to specify how the site should be build
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```toml
+[build]
+  command = "npm run build"
+  publish = "dist"
+  environment = { NODE_VERSION = "18.8.0", NPM_VERSION = "8.18.0" }
 ```
 
-### Compile and Hot-Reload for Development
+2. Fix the refresh on `/about` (basically surfing directly to routes in SPA's)
 
-```sh
-npm run dev
+Create a file `_redirects` and redirect all routes to `index.html`
+
+```
+# Fixing Single Page Web app routes
+/*    /index.html   200
 ```
 
-### Type-Check, Compile and Minify for Production
+### Fixing CORS on Netlify
 
-```sh
-npm run build
-```
+I expected us to get CORS problems here, but we don't. Backend is configured to allow all cors but that was not enough in the past.
 
-### Lint with [ESLint](https://eslint.org/)
+Anyways, if problems would arise here is a Netlify solution.
 
-```sh
-npm run lint
-```
