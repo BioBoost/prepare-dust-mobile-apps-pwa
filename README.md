@@ -187,8 +187,45 @@ As of september 2022, netlify does not allow free accounts to deploy websites fr
 To use github actions we need to create a yaml file in `.github/workflows`. Let's call the file `build_production.yml`:
 
 ```yaml
+name: Build Vue3 Site
 
+on:
+  push:
+    branches: [ master ]
 
+env:
+  VITE_MY_ENV_VAR: "This comes from the github action"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: ✨ Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build dist
+        run: npm run build
+
+        # https://github.com/nwtgck/actions-netlify
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.2
+        with:
+          production-deploy: true
+          publish-dir: './dist'
+          deploy-message: "${{ github.event.head_commit.message }}"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 ```
 
 Next you will need to setup a personal access token on netlify via [https://app.netlify.com/user/applications#personal-access-tokens](https://app.netlify.com/user/applications#personal-access-tokens).
@@ -211,3 +248,8 @@ Also change the `netlify.toml` config file as such:
 ```
 
 Also unlinked the repo in `Site Settings => Build & deploy => Continuous Deployment`.
+
+### API Redirects
+
+Another problem arises now. Apparently the redirects in the `netlify.toml` are not processed anymore.
+
