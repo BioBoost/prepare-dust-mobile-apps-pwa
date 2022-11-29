@@ -13,12 +13,24 @@
 
 2. Fix the refresh on `/about` (basically surfing directly to routes in SPA's)
 
-Create a file `_redirects` and redirect all routes to `index.html`
+You can create a file called `_redirects` in `dist` (needs to be taken into account when building the app) with the content below:
 
 ```
 # Fixing Single Page Web app routes
 /*    /index.html   200
 ```
+
+Or you can add the redirect to the `netlify.toml` file:
+
+```toml
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+```
+
+More info @ [https://docs.netlify.com/routing/redirects/](https://docs.netlify.com/routing/redirects/),
 
 ### Fixing CORS on Netlify
 
