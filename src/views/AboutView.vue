@@ -6,7 +6,7 @@ const trees = ref([] as any);
 const error = ref("");
 
 onMounted(() => {
-  axios.get('https://dust.devbitapp.be/api/trees')
+  axios.get('/api/trees')
   .then((response) => {
     // console.log(response)
     trees.value = response.data.data;

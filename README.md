@@ -48,6 +48,6 @@ Anyways, if problems would arise here is a Netlify solution.
   force = true
 ```
 
-
+**Make sure to place this before the `/*` redirect!**
 
 More info @ [https://docs.netlify.com/configure-builds/file-based-configuration/#redirects](https://docs.netlify.com/configure-builds/file-based-configuration/#redirects).
