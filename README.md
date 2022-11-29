@@ -61,3 +61,33 @@ TODO: Fix this for local development
 ## Environment Variables
 
 Vite: [https://vitejs.dev/guide/env-and-mode.html](https://vitejs.dev/guide/env-and-mode.html)
+
+So you can create `.env` files for development `.env.development` with the following content for example:
+
+```
+VITE_MY_ENV_VAR="You are working in dev mode"
+```
+
+**Make sure it starts with `VITE_` so vite replaces it when building the site**.
+
+Than we can use it inside our app:
+
+```vue
+<script setup lang="ts">
+// ....
+
+const envVar = import.meta.env.VITE_MY_ENV_VAR
+</script>
+
+<template>
+  <div class="about">
+    <h1>This is an about page</h1>
+    <div>Environment variable: {{ envVar }}</div>
+
+```
+
+Of course when we deploy on netlify we need to be able to set the ENV var there too.
+
+Netlify allows you to do just that:
+
+![Netlify ENV vars](./img/netlify_env_vars.png)
