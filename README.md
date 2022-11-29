@@ -1,6 +1,6 @@
 # Prepara DUST Mobile Apps PWA and Deployment
 
-## Deployment
+## Deployment on Netlify
 
 1. Setup a netlify.toml file to specify how the site should be build
 
@@ -149,6 +149,63 @@ const envVar = import.meta.env.VITE_MY_ENV_VAR
   <!-- ... -->
 </template>
 
-</style>
+```
 
+#### Vite Proxy
+
+Another option is to use VITE to proxy the api locally. This can be useful for development.
+
+```ts
+// ...
+
+export default defineConfig({
+  // ...
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://dust.devbitapp.be/api',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      },
+    }
+  }
+})
+```
+
+Of course then both in development and production the API is accessible via `/api` and no env var is needed anymore.
+
+Or you could play it all safe and allow for an env var but use `/api` as fallback:
+
+```ts
+const baseURL = import.meta.env.VITE_API_ENDPOINT || '/api'
+```
+
+## Private Repos
+
+As of september 2022, netlify does not allow free accounts to deploy websites from a private repo. This can be fixed by using Github actions to build the web site into static files and push them to netlify.
+
+To use github actions we need to create a yaml file in `.github/workflows`. Let's call the file `build_production.yml`:
+
+```yaml
+
+
+```
+
+Next you will need to setup a personal access token on netlify via [https://app.netlify.com/user/applications#personal-access-tokens](https://app.netlify.com/user/applications#personal-access-tokens).
+
+![Access Token](./img/access_token.png)
+
+The netlify site ID can be found at `team page > your site > Settings > Site details > Site information > API ID`
+
+You need to set these secrets on GitHub via `repo => Settings => Secrets`.
+
+![Github Secrets](./img/github_secrets.png)
+
+You should also stop the build process on netlify: `Site Settings => Build & deploy => Build Settings`.
+
+Also change the `netlify.toml` config file as such:
+
+```toml
+[build]
+  publish = "dist"
 ```

@@ -5,7 +5,7 @@ import { onMounted, ref } from 'vue';
 const trees = ref([] as any);
 const error = ref("");
 
-const baseURL = import.meta.env.VITE_API_ENDPOINT
+const baseURL = import.meta.env.VITE_API_ENDPOINT || '/api'
 const api = axios.create({
   baseURL: baseURL
 })
