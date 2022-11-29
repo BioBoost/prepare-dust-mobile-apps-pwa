@@ -34,6 +34,8 @@ More info @ [https://docs.netlify.com/routing/redirects/](https://docs.netlify.c
 
 ### Fixing CORS on Netlify
 
+Source: [https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+
 I expected us to get CORS problems here, but we don't. Backend is configured to allow all cors but that was not enough in the past.
 
 Anyways, if problems would arise here is a Netlify solution.
