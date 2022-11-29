@@ -209,3 +209,5 @@ Also change the `netlify.toml` config file as such:
 [build]
   publish = "dist"
 ```
+
+Also unlinked the repo in `Site Settings => Build & deploy => Continuous Deployment`.
