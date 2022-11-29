@@ -43,13 +43,21 @@ Anyways, if problems would arise here is a Netlify solution.
 ```toml
 [[redirects]]
   from = "/api/*"
-  to = "https://dust.devbitapp.be/api"
+  to = "https://dust.devbitapp.be/api/:splat"
   status = 200
   force = true
 ```
+
+An asterisk indicates a splat that will match anything that follows it. You can use the splat in your rewrites.
 
 **Make sure to place this before the `/*` redirect!**
 
 More info @ [https://docs.netlify.com/configure-builds/file-based-configuration/#redirects](https://docs.netlify.com/configure-builds/file-based-configuration/#redirects).
 
 Of course you will need to make your API calls to `/api` from now on and not the actual dust endpoint.
+
+TODO: Fix this for local development
+
+## Environment Variables
+
+Vite: [https://vitejs.dev/guide/env-and-mode.html](https://vitejs.dev/guide/env-and-mode.html)

@@ -16,11 +16,14 @@ onMounted(() => {
     error.value = err.message;
   })
 })
+
+const envVar = import.meta.env.VITE_MY_ENV_VAR
 </script>
 
 <template>
   <div class="about">
     <h1>This is an about page</h1>
+    <div>Environment variable: {{ envVar }}</div>
 
     <div>
       <h3>Trees</h3>
