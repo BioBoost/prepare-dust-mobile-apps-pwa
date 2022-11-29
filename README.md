@@ -38,3 +38,14 @@ I expected us to get CORS problems here, but we don't. Backend is configured to 
 
 Anyways, if problems would arise here is a Netlify solution.
 
+```toml
+[[redirects]]
+  from = "/api/*"
+  to = "https://dust.devbitapp.be/api"
+  status = 200
+  force = true
+```
+
+
+
+More info @ [https://docs.netlify.com/configure-builds/file-based-configuration/#redirects](https://docs.netlify.com/configure-builds/file-based-configuration/#redirects).
